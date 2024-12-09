@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import "../App.css"; // Import the CSS file
 
 const ReadRfid = ({ inventory, fetchInventory }) => {
   // Automatically fetch inventory when the component is mounted
@@ -7,9 +8,9 @@ const ReadRfid = ({ inventory, fetchInventory }) => {
   }, [fetchInventory]);
 
   return (
-    <div>
+    <div className="container">
       <h2>Inventario RFID</h2>
-      <table border="1" style={{ width: "100%", textAlign: "left" }}>
+      <table className="table">
         <thead>
           <tr>
             <th>RFID</th>
@@ -21,7 +22,7 @@ const ReadRfid = ({ inventory, fetchInventory }) => {
         <tbody>
           {inventory.length > 0 ? (
             inventory.map((item) => (
-              <tr key={item.rfid}>
+              <tr key={item.rfid_tag}>
                 <td>{item.rfid_tag}</td>
                 <td>{item.product_name}</td>
                 <td>{item.count}</td>

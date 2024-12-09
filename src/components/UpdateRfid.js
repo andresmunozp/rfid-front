@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import API from "../api";
+import "../App.css"; // Ensure you import the CSS file
 
 const UpdateRfid = ({ fetchInventory }) => {
   const [rfid_tag, setRfid] = useState("");
@@ -32,40 +33,45 @@ const UpdateRfid = ({ fetchInventory }) => {
   };
 
   return (
-    <form onSubmit={handleUpdate} style={{ marginTop: "20px" }}>
+    <div className="container">
       <h2>Actualizar Registro</h2>
-      <div>
-        <label>RFID: </label>
-        <input
-          type="text"
-          placeholder="Ingrese el RFID"
-          value={rfid_tag}
-          onChange={(e) => setRfid(e.target.value)}
-          required
-        />
-      </div>
-      <div>
-        <label>Nombre del Producto: </label>
-        <input
-          type="text"
-          placeholder="Nuevo nombre del producto"
-          value={productName}
-          onChange={(e) => setProductName(e.target.value)}
-          required
-        />
-      </div>
-      <div>
-        <label>Cantidad: </label>
-        <input
-          type="number"
-          placeholder="Nueva cantidad"
-          value={count}
-          onChange={(e) => setCount(e.target.value)}
-          required
-        />
-      </div>
-      <button type="submit">Actualizar</button>
-    </form>
+      <form onSubmit={handleUpdate} style={{ marginTop: "20px" }}>
+        <div style={{ marginBottom: "10px" }}>
+          <label>RFID: </label>
+          <input
+            type="text"
+            placeholder="Ingrese el RFID"
+            value={rfid_tag}
+            onChange={(e) => setRfid(e.target.value)}
+            required
+            className="input-field"
+          />
+        </div>
+        <div style={{ marginBottom: "10px" }}>
+          <label>Nombre del Producto: </label>
+          <input
+            type="text"
+            placeholder="Nuevo nombre del producto"
+            value={productName}
+            onChange={(e) => setProductName(e.target.value)}
+            required
+            className="input-field"
+          />
+        </div>
+        <div style={{ marginBottom: "10px" }}>
+          <label>Cantidad: </label>
+          <input
+            type="number"
+            placeholder="Nueva cantidad"
+            value={count}
+            onChange={(e) => setCount(e.target.value)}
+            required
+            className="input-field"
+          />
+        </div>
+        <button type="submit" className="btn">Actualizar</button>
+      </form>
+    </div>
   );
 };
 

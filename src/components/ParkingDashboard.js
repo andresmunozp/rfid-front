@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import API from "../api";
+import "../App.css"; // Ensure you import the CSS file
 
 const ParkingDashboard = () => {
   const [parkingStatus, setParkingStatus] = useState({
@@ -22,10 +23,12 @@ const ParkingDashboard = () => {
   }, []);
 
   return (
-    <div>
+    <div className="container"> {/* Align with the table */}
       <h2>Estado del Parqueadero</h2>
-      <p>Espacios totales: {parkingStatus.total_spaces}</p>
-      <p>Espacios disponibles: {parkingStatus.available_spaces}</p>
+      <div className="parking-status">
+        <span>Espacios totales: {parkingStatus.total_spaces}</span>
+        <span>Espacios disponibles: {parkingStatus.available_spaces}</span>
+      </div>
     </div>
   );
 };

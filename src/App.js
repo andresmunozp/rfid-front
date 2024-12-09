@@ -5,6 +5,7 @@ import CreateRfid from "./components/CreateRfid";
 import UpdateRfid from "./components/UpdateRfid";
 import DeleteRfid from "./components/DeleteRfid";
 import ParkingDashboard from "./components/ParkingDashboard";
+import "./App.css"; // Import the CSS file
 
 const App = () => {
   const [inventory, setInventory] = useState([]);
@@ -22,10 +23,10 @@ const App = () => {
   // Pass the fetchInventory function to child components
   return (
     <div>
-      <h1>Sistema de Parqueadero</h1>
+      <h1 className="title">Sistema de Parqueadero</h1>
       <ParkingDashboard />
-      <h1>CRUD de Inventario RFID</h1>
-      <CreateRfid fetchInventory={fetchInventory} />
+      <h1 className="title">CRUD Parqueadero RFID</h1>
+      {/* <CreateRfid fetchInventory={fetchInventory} /> */}
       <ReadRfid inventory={inventory} fetchInventory={fetchInventory} />
       <UpdateRfid fetchInventory={fetchInventory} />
       <DeleteRfid fetchInventory={fetchInventory} />

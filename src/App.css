@@ -36,3 +36,144 @@
     transform: rotate(360deg);
   }
 }
+
+/* Center titles across the app */
+.title {
+  text-align: center; /* Center align the text */
+  margin-bottom: 20px; /* Add spacing below the title */
+}
+
+/* Optional: Adjust h2 titles for consistency */
+.subtitle {
+  text-align: center; /* Center align subtitles */
+  margin-bottom: 15px; /* Add spacing below subtitles */
+  font-size: 1.5rem; /* Adjust font size for h2 */
+  font-weight: bold; /* Make subtitles bold */
+}
+
+/* Container for centering and spacing */
+.container {
+  max-width: 800px; /* Set a maximum width */
+  margin: 20px auto; /* Center the content and add vertical spacing */
+  padding: 20px; /* Add padding inside the container */
+  border: 1px solid #ddd; /* Optional: Add a border */
+  border-radius: 8px; /* Optional: Add rounded corners */
+  background-color: #f9f9f9; /* Light background color */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow */
+}
+
+/* Style the table */
+.table {
+  width: 100%; /* Let the table take the full width of the container */
+  border-collapse: collapse; /* Remove extra spacing between cells */
+  margin: 20px 0; /* Add spacing above and below the table */
+}
+
+/* Table header styles */
+.table th {
+  background-color: #f1f1f1; /* Light gray background for headers */
+  text-align: left; /* Align text to the left */
+  padding: 10px; /* Add padding to header cells */
+  border-bottom: 2px solid #ddd; /* Add a border below headers */
+}
+
+/* Table cell styles */
+.table td {
+  padding: 10px; /* Add padding to table cells */
+  border-bottom: 1px solid #ddd; /* Add a bottom border */
+}
+
+/* Center the "no data" message */
+.table td[colspan] {
+  text-align: center; /* Center align the text for "no data" message */
+  font-style: italic; /* Optional: Italicize the text */
+}
+
+/* Optional: Add hover effects */
+.table tr:hover {
+  background-color: #f5f5f5; /* Highlight row on hover */
+}
+/* Align the container with the table */
+.container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+/* Style for the parking status section */
+.parking-status {
+  display: flex; /* Arrange items in a row */
+  gap: 30px; /* Add a small space between items */
+  align-items: center; /* Align items vertically */
+  padding: 10px 0;
+  font-size: 16px; /* Adjust font size if needed */
+}
+
+/* Align container with the table and other sections */
+.container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Form input field styling */
+.input-field {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+/* Button styling */
+.btn {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #0056b3;
+}
+/* Align container with other sections */
+.container2 {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Form input field styling */
+.input-field2 {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+/* Button styling */
+.btn2 {
+  padding: 10px 20px;
+  background-color: #dc3545; /* Red background for "delete" action */
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn2:hover {
+  background-color: #c82333; /* Darker red on hover */
+}
