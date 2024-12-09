@@ -1,64 +1,82 @@
 import React, { useState, useEffect } from "react";
+import { io } from "socket.io-client";
 import API from "./api";
 import ReadRfid from "./components/ReadRfid";
 import UpdateRfid from "./components/UpdateRfid";
 import DeleteRfid from "./components/DeleteRfid";
 import ParkingDashboard from "./components/ParkingDashboard";
-import "./App.css"; // Import the CSS file
+import "./App.css";
+
+const socket = io("http://localhost:5000");
 
 const App = () => {
-  const [inventory, setInventory] = useState([]); // Inventory data
-  const [parkingStatus, setParkingStatus] = useState({ // Parking status data
-    total_spaces: 0,
-    available_spaces: 0,
-  });
+    const [inventory, setInventory] = useState([]);
+    const [parkingStatus, setParkingStatus] = useState({
+        total_spaces: 0,
+        available_spaces: 0,
+    });
 
-  // Function to fetch inventory data
-  const fetchInventory = async () => {
-    try {
-      const response = await API.get("/inventory");
-      setInventory(response.data);
-    } catch (error) {
-      console.error("Error fetching inventory:", error);
-    }
-  };
+    // Fetch initial data
+    const fetchInventory = async () => {
+        try {
+            const response = await API.get("/inventory");
+            setInventory(response.data);
+        } catch (error) {
+            console.error("Error fetching inventory:", error);
+        }
+    };
 
-  // Function to fetch parking status
-  const fetchParkingStatus = async () => {
-    try {
-      const response = await API.get("/parking_status");
-      setParkingStatus(response.data);
-    } catch (error) {
-      console.error("Error fetching parking status:", error);
-    }
-  };
+    const fetchParkingStatus = async () => {
+        try {
+            const response = await API.get("/parking_status");
+            setParkingStatus(response.data);
+        } catch (error) {
+            console.error("Error fetching parking status:", error);
+        }
+    };
 
-  // Fetch data initially and set up polling
-  useEffect(() => {
-    // Fetch data on mount
-    fetchInventory();
-    fetchParkingStatus();
+    useEffect(() => {
+      // Establish WebSocket connection
+      socket.on("inventory_update", () => {
+          console.log("Inventory update received.");
+          fetchInventory(); // Fetch updated inventory only when notified
+      });
+  
+      return () => {
+          socket.off("inventory_update");
+      };
+    }, []);
 
-    // Set up polling every 5 seconds
-    const interval = setInterval(() => {
-      fetchInventory();
-      fetchParkingStatus();
-    }, 500); // Adjust interval as needed
+    useEffect(() => {
+        fetchInventory();
+        fetchParkingStatus();
 
-    // Cleanup interval on unmount
-    return () => clearInterval(interval);
-  }, []);
+        // Listen for WebSocket updates
+        socket.on("parking_update", (data) => {
+            console.log("Parking status updated:", data);
+            setParkingStatus((prev) => ({ ...prev, available_spaces: data.available_spaces }));
+        });
 
-  return (
-    <div>
-      <h1 className="title">Sistema de Parqueadero</h1>
-      <ParkingDashboard parkingStatus={parkingStatus} />
-      <h1 className="title">CRUD de Inventario RFID</h1>
-      <ReadRfid inventory={inventory} fetchInventory={fetchInventory} />
-      <UpdateRfid fetchInventory={fetchInventory} />
-      <DeleteRfid fetchInventory={fetchInventory} />
-    </div>
-  );
+        socket.on("inventory_update", (data) => {
+            console.log("Inventory updated:", data);
+            fetchInventory(); // Fetch inventory on update
+        });
+
+        return () => {
+            socket.disconnect();
+        };
+    }, []);
+
+    return (
+        <div>
+            <h1 className="title">Sistema de Parqueadero</h1>
+            <ParkingDashboard parkingStatus={parkingStatus} />
+            <h1 className="title">CRUD de Inventario RFID</h1>
+            <ReadRfid inventory={inventory} />
+            <UpdateRfid fetchInventory={fetchInventory} />
+            <DeleteRfid fetchInventory={fetchInventory} />
+        </div>
+    );
 };
 
 export default App;

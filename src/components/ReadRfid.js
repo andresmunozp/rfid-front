@@ -1,11 +1,8 @@
 import React, { useEffect } from "react";
 import "../App.css"; // Import the CSS file
 
-const ReadRfid = ({ inventory, fetchInventory }) => {
-  // Automatically fetch inventory when the component is mounted
-  useEffect(() => {
-    fetchInventory();
-  }, [fetchInventory]);
+const ReadRfid = ({ inventory}) => {
+
 
   return (
     <div className="container">
