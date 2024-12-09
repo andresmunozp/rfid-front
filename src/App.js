@@ -7,7 +7,7 @@ import DeleteRfid from "./components/DeleteRfid";
 import ParkingDashboard from "./components/ParkingDashboard";
 import "./App.css";
 
-const socket = io("http://localhost:5000");
+const socket = io("https://rfid-1-ndcb.onrender.com");
 
 const App = () => {
     const [inventory, setInventory] = useState([]);
