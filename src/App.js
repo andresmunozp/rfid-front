@@ -36,18 +36,6 @@ const App = () => {
     };
 
     useEffect(() => {
-      // Establish WebSocket connection
-      socket.on("inventory_update", () => {
-          console.log("Inventory update received.");
-          fetchInventory(); // Fetch updated inventory only when notified
-      });
-  
-      return () => {
-          socket.off("inventory_update");
-      };
-    }, []);
-
-    useEffect(() => {
         fetchInventory();
         fetchParkingStatus();
 
